@@ -1,0 +1,430 @@
+/* Betting Table Styles */
+
+.betting-table {
+  display: inline-grid;
+  grid-template-columns: auto repeat(12, 60px) auto;
+  grid-template-rows: auto repeat(3, 60px) auto auto auto;
+  gap: 2px;
+  background: var(--color-border);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  margin: 0 auto;
+  user-select: none;
+}
+
+/* Number cells */
+.table-cell {
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  border-radius: var(--radius-sm);
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.table-cell:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.table-cell.active {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+/* Red numbers */
+.table-cell.red {
+  background: var(--color-red);
+  color: white;
+}
+
+.table-cell.red:hover {
+  background: var(--color-red-hover);
+}
+
+/* Black numbers */
+.table-cell.black {
+  background: var(--color-black);
+  color: white;
+}
+
+.table-cell.black:hover {
+  background: #374151;
+}
+
+/* Green (zeros) */
+.table-cell.green {
+  background: var(--color-green);
+  color: white;
+}
+
+.table-cell.green:hover {
+  background: #059669;
+}
+
+/* Zero cells (special layout) */
+.zero-cell {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  writing-mode: vertical-rl;
+  font-size: 1.5rem;
+}
+
+.double-zero-cell {
+  grid-column: 1;
+  grid-row: 4 / 7;
+  writing-mode: vertical-rl;
+  font-size: 1.5rem;
+}
+
+/* Column bet areas */
+.column-bet {
+  grid-row: 4;
+  background: var(--color-surface);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.column-bet:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.column-1 {
+  grid-column: 2 / 6;
+}
+
+.column-2 {
+  grid-column: 6 / 10;
+}
+
+.column-3 {
+  grid-column: 10 / 14;
+}
+
+/* Dozen bet areas */
+.dozen-bet {
+  grid-row: 5;
+  background: var(--color-surface);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.dozen-bet:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.dozen-1 {
+  grid-column: 2 / 6;
+}
+
+.dozen-2 {
+  grid-column: 6 / 10;
+}
+
+.dozen-3 {
+  grid-column: 10 / 14;
+}
+
+/* Outside bets */
+.outside-bet {
+  grid-row: 6;
+  background: var(--color-surface);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.outside-bet:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.bet-1-18 {
+  grid-column: 2 / 4;
+}
+
+.bet-even {
+  grid-column: 4 / 6;
+}
+
+.bet-red {
+  grid-column: 6 / 8;
+  background: var(--color-red);
+  color: white;
+}
+
+.bet-red:hover {
+  background: var(--color-red-hover);
+}
+
+.bet-black {
+  grid-column: 8 / 10;
+  background: var(--color-black);
+  color: white;
+}
+
+.bet-black:hover {
+  background: #374151;
+}
+
+.bet-odd {
+  grid-column: 10 / 12;
+}
+
+.bet-19-36 {
+  grid-column: 12 / 14;
+}
+
+/* Line bet areas (6-number bets between columns) */
+.line-bet-area {
+  background: transparent;
+  border-left: 3px solid rgba(16, 185, 129, 0.3);
+  border-right: 3px solid rgba(16, 185, 129, 0.3);
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  pointer-events: auto;
+  z-index: 5;
+  min-width: 8px;
+  margin: 0 -5px;
+}
+
+.line-bet-area:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-left-color: var(--color-primary);
+  border-right-color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+  transform: scaleX(1.5);
+}
+
+/* 2 to 1 labels */
+.two-to-one {
+  grid-column: 14;
+  background: var(--color-surface);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  writing-mode: vertical-rl;
+}
+
+.two-to-one:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+/* Chip overlay */
+.chip-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  z-index: 20;
+  border: 3px solid white;
+}
+
+.chip-1 {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.chip-5 {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.chip-10 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.chip-25 {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+}
+
+.chip-100 {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+}
+
+.chip-500 {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  color: white;
+}
+
+/* Winning number highlight */
+.table-cell.winning {
+  animation: pulse-win 1s ease-in-out;
+  box-shadow: 0 0 20px var(--color-primary);
+}
+
+@keyframes pulse-win {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 var(--color-primary);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--color-primary);
+  }
+}
+
+/* Responsive styles for tablet */
+@media (max-width: 1199px) {
+  .betting-table {
+    grid-template-columns: auto repeat(12, 50px) auto;
+    grid-template-rows: auto repeat(3, 50px) auto auto auto;
+  }
+
+  .table-cell {
+    min-width: 50px;
+    min-height: 50px;
+    font-size: 1rem;
+  }
+
+  .line-bet-area {
+    min-width: 6px;
+    margin: 0 -4px;
+    border-width: 2px;
+  }
+
+  .chip-overlay {
+    width: 35px;
+    height: 35px;
+    font-size: 0.7rem;
+    border-width: 2px;
+  }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 767px) {
+  .betting-table {
+    grid-template-columns: auto repeat(12, 40px) auto;
+    grid-template-rows: auto repeat(3, 40px) auto auto auto;
+    gap: 1px;
+  }
+
+  .table-cell {
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 0.875rem;
+  }
+
+  .line-bet-area {
+    min-width: 5px;
+    margin: 0 -3px;
+    border-width: 2px;
+  }
+
+  .zero-cell,
+  .double-zero-cell {
+    font-size: 1.25rem;
+  }
+
+  .column-bet,
+  .dozen-bet,
+  .outside-bet {
+    font-size: 0.7rem;
+  }
+
+  .two-to-one {
+    font-size: 0.65rem;
+  }
+
+  .chip-overlay {
+    width: 30px;
+    height: 30px;
+    font-size: 0.625rem;
+    border-width: 2px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 479px) {
+  .betting-table-container {
+    overflow-x: scroll;
+  }
+
+  .betting-table {
+    grid-template-columns: auto repeat(12, 35px) auto;
+    grid-template-rows: auto repeat(3, 35px) auto auto auto;
+  }
+
+  .table-cell {
+    min-width: 35px;
+    min-height: 35px;
+    font-size: 0.75rem;
+  }
+
+  .line-bet-area {
+    min-width: 4px;
+    margin: 0 -2px;
+    border-width: 1px;
+  }
+
+  .chip-overlay {
+    width: 25px;
+    height: 25px;
+    font-size: 0.5rem;
+  }
+}
+
+/* Bet zones for click detection (these will be added via JS) */
+.bet-zone {
+  position: absolute;
+  pointer-events: none;
+}
+
+.bet-zone.split-horizontal {
+  width: 4px;
+  height: 100%;
+  left: -2px;
+  top: 0;
+}
+
+.bet-zone.split-vertical {
+  width: 100%;
+  height: 4px;
+  left: 0;
+  top: -2px;
+}
+
+.bet-zone.corner {
+  width: 8px;
+  height: 8px;
+  left: -4px;
+  top: -4px;
+}
+
+.bet-zone.street {
+  width: 100%;
+  height: 8px;
+  left: 0;
+  top: -4px;
+}
